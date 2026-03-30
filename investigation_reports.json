@@ -1,0 +1,26 @@
+[
+  {
+    "date": "March 22, 2026",
+    "sentiment": -0.723,
+    "articles": 11,
+    "high_volume": false,
+    "report": "This investigation confirms that the negative sentiment score of -0.723 on March 22, 2026 reflects deep market concerns about the intersection of geopolitical risk, energy-driven inflation, and Fed policy constraints in a challenging economic environment.",
+    "investigated_at": "2026-03-29 22:44"
+  },
+  {
+    "date": "March 19, 2026",
+    "sentiment": -0.379,
+    "articles": 95,
+    "high_volume": true,
+    "report": ".\n\n## SOURCES:\nFederal Reserve\nCNBC  \nThe Motley Fool\n\n*Analysis based on 95 articles published March 19, 2026, with comprehensive cross-referencing of official Fed statements, market data, and geopolitical developments.*",
+    "investigated_at": "2026-03-29 22:50"
+  },
+  {
+    "date": "March 18, 2026",
+    "sentiment": -0.216,
+    "articles": 96,
+    "high_volume": true,
+    "report": "US government officials and Wall Street analysts are starting to",
+    "investigated_at": "2026-03-29 22:58"
+  }
+]
