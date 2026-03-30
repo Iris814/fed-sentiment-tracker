@@ -182,10 +182,13 @@ List top three most prestige sources found as the name of channel"""
 
             cleaned_content = []
             for block in response.content:
-                if hasattr(block, "text") and block.text:
+                if hasattr(block, "text"):
+                    if not block.text or not block.text.strip():
+                        continue
                     block.text = block.text.strip()
                 cleaned_content.append(block)
-            messages.append({"role": "assistant", "content": cleaned_content})
+            if cleaned_content:
+                messages.append({"role": "assistant", "content": cleaned_content})
 
             if response.stop_reason == "end_turn" and len(final_report) > 200:
                 return final_report
