@@ -258,3 +258,20 @@ if __name__ == "__main__":
         print(f"\nSaved {len(reports)} reports to investigation_reports.json")
 
     print("\nPipeline complete!")
+def print_reports():
+    if not os.path.exists("investigation_reports.json"):
+        print("No reports found yet")
+        return
+
+    with open("investigation_reports.json", "r") as f:
+        reports = json.load(f)
+
+    for report in reports:
+        print(f"\n{'='*60}")
+        print(f"Date: {report['date']}")
+        print(f"Sentiment: {report['sentiment']} | Articles: {report['articles']} | High volume: {report['high_volume']}")
+        print(f"Investigated at: {report['investigated_at']}")
+        print(f"{'-'*60}")
+        print(report['report'])
+    print(f"\n{'='*60}")
+    print(f"Total reports: {len(reports)}")
