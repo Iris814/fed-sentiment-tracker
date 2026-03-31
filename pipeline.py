@@ -48,6 +48,7 @@ def fetch_headlines(topic, api_key, days_back=27):
 
     return pd.DataFrame(headlines).drop_duplicates(subset="url")
 
+
 def fetch_incremental(topic, api_key, csv_path=CSV_PATH):
     if os.path.exists(csv_path):
         existing = pd.read_csv(csv_path)
@@ -80,12 +81,14 @@ def fetch_incremental(topic, api_key, csv_path=CSV_PATH):
     print(f"Total articles saved: {len(combined)}")
     return combined
 
+
 # ── score ──────────────────────────────────────────────────
 def load_finbert():
     print("Loading FinBERT...")
     return hf_pipeline("text-classification",
                         model="ProsusAI/finbert",
                         device=-1)
+
 
 def score_finbert(title, finbert):
     try:
@@ -97,6 +100,7 @@ def score_finbert(title, finbert):
         else:                     return 0.0
     except:
         return 0.0
+
 
 # ── aggregate ──────────────────────────────────────────────
 def aggregate(df):
@@ -132,53 +136,45 @@ def aggregate(df):
     print(f"Days flagged: {len(anomalies)}")
     return daily, anomalies
 
+
 # ── investigate ────────────────────────────────────────────
 def investigate_with_search(row):
     date_str = row["published"].strftime("%B %d, %Y")
     sentiment = row["avg_sentiment"]
     articles  = row["article_count"]
 
-    messages = [{
+    # step 1 — search exactly 3 times, collect raw facts
+    search_messages = [{
         "role": "user",
-        "content": f"""You are a senior financial analyst. Search the web for Federal Reserve and inflation news on {date_str}.
+        "content": f"""You are a senior financial analyst.
 
-Context:
-- Date: {date_str}
-- Sentiment score: {sentiment:.3f} (-1.0 = very negative, +1.0 = very positive)
-- Articles published: {articles}
+Search exactly 3 times, no more:
+1. Search: "Federal Reserve {date_str}"
+2. Search: "inflation news {date_str}"
+3. Search: "market reaction Fed {date_str}"
 
-After searching, respond in exactly this format:
-
-KEYWORDS:
-At most three keywords capturing the main themes
-
-SUMMARY:
-1-2 sentences explaining what happened and why sentiment hit {sentiment:.3f}
-
-INVESTMENT WATCHOUT:
-1-2 sentences on what investors should consider. Be specific about asset classes and sectors.
-
-SOURCES:
-List top three most prestige sources found as the name of channel"""
+After exactly 3 searches stop. Do not search again.
+Return only the key facts you found — no analysis yet."""
     }]
 
     max_turns = 6
     turns = 0
-    final_report = ""
+    search_results = ""
 
     while turns < max_turns:
         try:
             response = client.messages.create(
                 model="claude-sonnet-4-20250514",
-                max_tokens=700,
+                max_tokens=500,
                 tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                messages=messages
+                messages=search_messages
             )
+
             turns += 1
 
             for block in response.content:
                 if hasattr(block, "text") and block.text:
-                    final_report = block.text.strip()
+                    search_results = block.text.strip()
 
             cleaned_content = []
             for block in response.content:
@@ -187,16 +183,16 @@ List top three most prestige sources found as the name of channel"""
                         continue
                     block.text = block.text.strip()
                 cleaned_content.append(block)
-            if cleaned_content:
-                messages.append({"role": "assistant", "content": cleaned_content})
 
-            if response.stop_reason == "end_turn" and len(final_report) > 200:
-                return final_report
-            if response.stop_reason == "end_turn" and len(final_report) <= 200:
-                messages.append({
-                    "role": "user",
-                    "content": "Please complete your full investigation report."
+            if cleaned_content:
+                search_messages.append({
+                    "role": "assistant",
+                    "content": cleaned_content
                 })
+
+            if response.stop_reason == "end_turn":
+                break
+
             time.sleep(20)
 
         except anthropic.RateLimitError:
@@ -204,7 +200,58 @@ List top three most prestige sources found as the name of channel"""
             time.sleep(90)
             continue
 
-    return final_report if final_report else "Investigation incomplete"
+    # step 2 — format report with no web search (cheap)
+    report_response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=400,
+        messages=[{
+            "role": "user",
+            "content": f"""Based on these facts about {date_str}:
+
+{search_results}
+
+Context:
+- Sentiment score: {sentiment:.3f} (-1.0 = very negative, +1.0 = very positive)
+- Articles published: {articles}
+
+Write a structured report in exactly this format:
+
+KEYWORDS:
+3 keywords maximum capturing main themes
+
+SUMMARY:
+2-3 sentences explaining what happened and why sentiment hit {sentiment:.3f}
+
+INVESTMENT WATCHOUT:
+1-2 sentences on what investors should watch. Be specific about asset classes and sectors.
+
+SOURCES:
+Top 3 most prestigious sources from the research"""
+        }]
+    )
+
+    return report_response.content[0].text.strip()
+
+
+# ── read reports ───────────────────────────────────────────
+def print_reports():
+    if not os.path.exists("investigation_reports.json"):
+        print("No reports found yet")
+        return
+
+    with open("investigation_reports.json", "r") as f:
+        reports = json.load(f)
+
+    for report in reports:
+        print(f"\n{'='*60}")
+        print(f"Date: {report['date']}")
+        print(f"Sentiment: {report['sentiment']} | Articles: {report['articles']} | High volume: {report['high_volume']}")
+        print(f"Investigated at: {report['investigated_at']}")
+        print(f"{'-'*60}")
+        print(report['report'])
+    print(f"\n{'='*60}")
+    print(f"Total reports: {len(reports)}")
+
 
 # ── main ───────────────────────────────────────────────────
 if __name__ == "__main__":
@@ -227,11 +274,25 @@ if __name__ == "__main__":
     # 3. aggregate and detect
     daily, anomalies = aggregate(df)
 
-    # 4. investigate anomalies
-    if anomalies.empty:
-        print("No anomalies detected today — pipeline complete")
+    # 4. load already investigated dates
+    if os.path.exists("investigation_reports.json"):
+        with open("investigation_reports.json", "r") as f:
+            existing_reports = json.load(f)
+        already_investigated = [r["date"] for r in existing_reports]
     else:
-        reports = []
+        existing_reports = []
+        already_investigated = []
+
+    # 5. filter to only new anomaly days
+    anomalies = anomalies[
+        ~anomalies["published"].dt.strftime("%B %d, %Y").isin(already_investigated)
+    ]
+
+    # 6. investigate new anomalies only
+    if anomalies.empty:
+        print("No new anomalies to investigate — pipeline complete")
+    else:
+        new_reports = []
         print("\nRunning agentic investigation...")
         print("=" * 60)
 
@@ -244,7 +305,7 @@ if __name__ == "__main__":
             print(report)
             print("=" * 60)
 
-            reports.append({
+            new_reports.append({
                 "date": date_str,
                 "sentiment": round(row["avg_sentiment"], 3),
                 "articles": int(row["article_count"]),
@@ -256,25 +317,10 @@ if __name__ == "__main__":
             print("Waiting 60 seconds...")
             time.sleep(60)
 
+        # append new reports to existing ones
+        all_reports = existing_reports + new_reports
         with open("investigation_reports.json", "w") as f:
-            json.dump(reports, f, indent=2)
-        print(f"\nSaved {len(reports)} reports to investigation_reports.json")
+            json.dump(all_reports, f, indent=2)
+        print(f"\nSaved {len(new_reports)} new reports. Total: {len(all_reports)}")
 
     print("\nPipeline complete!")
-def print_reports():
-    if not os.path.exists("investigation_reports.json"):
-        print("No reports found yet")
-        return
-
-    with open("investigation_reports.json", "r") as f:
-        reports = json.load(f)
-
-    for report in reports:
-        print(f"\n{'='*60}")
-        print(f"Date: {report['date']}")
-        print(f"Sentiment: {report['sentiment']} | Articles: {report['articles']} | High volume: {report['high_volume']}")
-        print(f"Investigated at: {report['investigated_at']}")
-        print(f"{'-'*60}")
-        print(report['report'])
-    print(f"\n{'='*60}")
-    print(f"Total reports: {len(reports)}")
