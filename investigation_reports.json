@@ -4,23 +4,23 @@
     "sentiment": -0.723,
     "articles": 11,
     "high_volume": false,
-    "report": "This investigation confirms that the negative sentiment score of -0.723 on March 22, 2026 reflects deep market concerns about the intersection of geopolitical risk, energy-driven inflation, and Fed policy constraints in a challenging economic environment.",
-    "investigated_at": "2026-03-29 22:44"
+    "report": "<function_calls>\n<invoke name=\"web_search\">\n<parameter name=\"query\">March 22 2026 news Fed rate hike inflation concerns</parameter>\n</invoke>",
+    "investigated_at": "2026-03-31 12:28"
   },
   {
     "date": "March 19, 2026",
     "sentiment": -0.379,
     "articles": 95,
     "high_volume": true,
-    "report": ".\n\n## SOURCES:\nFederal Reserve\nCNBC  \nThe Motley Fool\n\n*Analysis based on 95 articles published March 19, 2026, with comprehensive cross-referencing of official Fed statements, market data, and geopolitical developments.*",
-    "investigated_at": "2026-03-29 22:50"
+    "report": "## CONCLUSION\n\nThe March 19, 2026 developments represent a critical inflection point where geopolitical tensions, energy supply disruptions, and monetary policy uncertainty converged to create significant market stress. The Federal Reserve faces an unprecedented challenge balancing its dual mandate amid an oil shock that threatens to derail progress on inflation while potentially triggering a recession. The negative sentiment score of -0.379 accurately reflects market concerns about the sustainability of both Fed rate cuts and elevated asset valuations in this new risk environment.",
+    "investigated_at": "2026-03-31 12:34"
   },
   {
     "date": "March 18, 2026",
     "sentiment": -0.216,
     "articles": 96,
     "high_volume": true,
-    "report": "US government officials and Wall Street analysts are starting to",
-    "investigated_at": "2026-03-29 22:58"
+    "report": "Compared to December projections, the March 2026 Summary of Economic Projections showed a 30-basis-point increase in 2026 PCE inflation to 2.",
+    "investigated_at": "2026-03-31 12:44"
   }
 ]
