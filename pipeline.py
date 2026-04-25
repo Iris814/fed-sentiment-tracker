@@ -201,12 +201,12 @@ Return only the key facts you found — no analysis yet."""
             continue
 
     # step 2 — format report with no web search (cheap)
-    report_response = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=400,
-        messages=[{
-            "role": "user",
-            "content": f"""Based on these facts about {date_str}:
+    # let the per-minute rate window relax after the search loop's high token usage
+    time.sleep(45)
+
+    report_messages = [{
+        "role": "user",
+        "content": f"""Based on these facts about {date_str}:
 
 {search_results}
 
@@ -227,10 +227,21 @@ INVESTMENT WATCHOUT:
 
 SOURCES:
 Top 3 most prestigious sources from the research"""
-        }]
-    )
+    }]
 
-    return report_response.content[0].text.strip()
+    for attempt in range(3):
+        try:
+            report_response = client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=400,
+                messages=report_messages
+            )
+            return report_response.content[0].text.strip()
+        except anthropic.RateLimitError:
+            print(f"Rate limit on report call (attempt {attempt + 1}/3) — waiting 90s...")
+            time.sleep(90)
+
+    raise RuntimeError(f"Failed to generate report for {date_str} after 3 retries")
 
 
 # ── read reports ───────────────────────────────────────────
