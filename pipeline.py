@@ -164,7 +164,7 @@ Return only the key facts you found — no analysis yet."""
     while turns < max_turns:
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-4-5",
                 max_tokens=500,
                 tools=[{"type": "web_search_20250305", "name": "web_search"}],
                 messages=search_messages
@@ -232,7 +232,7 @@ Top 3 most prestigious sources from the research"""
     for attempt in range(3):
         try:
             report_response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-4-5",
                 max_tokens=400,
                 messages=report_messages
             )
