@@ -33,8 +33,8 @@ Investigation reports for flagged anomaly days are written to `investigation_rep
 ## How to run
 
 ```bash
-# deps (no requirements.txt yet — install directly)
-pip install requests pandas anthropic transformers torch python-dotenv vaderSentiment matplotlib
+# deps
+pip install -r requirements.txt
 
 # secrets — put these in a .env at repo root
 NEWS_API_KEY=...

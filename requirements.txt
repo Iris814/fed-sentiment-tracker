@@ -1,0 +1,10 @@
+anthropic
+matplotlib
+numpy
+pandas
+python-dotenv
+requests
+torch
+tqdm
+transformers
+vaderSentiment
