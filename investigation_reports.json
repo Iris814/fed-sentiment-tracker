@@ -38,5 +38,101 @@
     "high_volume": true,
     "report": "I notice that while you've provided sentiment score (-0.416) and article count (85) for March 06, 2026, there are no actual facts, events, or source information included in your prompt. The context section appears to be incomplete.\n\nWithout the specific events, news content, or sources from that date, I cannot write an accurate report about what caused the negative sentiment or provide meaningful investment guidance.\n\nCould you please provide:\n- The actual events/news that occurred on March 06, 2026\n- The themes/topics covered in those 85 articles\n- The sources that published this information\n\nOnce I have this information, I'll be happy to create the structured report in the exact format you requested.",
     "investigated_at": "2026-04-14 12:30"
+  },
+  {
+    "date": "May 23, 2026",
+    "sentiment": -0.502,
+    "articles": 37,
+    "high_volume": false,
+    "report": "I notice that while you've provided the date (May 23, 2026), sentiment score (-0.502), and article count (37), you haven't included the actual facts, content, or context about what happened on that date. Without the specific events, news, or research details from May 23, 2026, I cannot write an accurate structured report.\n\nTo provide you with a meaningful analysis that captures the main themes, explains the negative sentiment, and offers relevant investment guidance, I would need:\n\n- The actual news events or developments from that date\n- The content or topics of those 37 articles\n- The specific sources that published the articles\n- Details about what drove the negative sentiment\n\nCould you please provide the factual content and context about what occurred on May 23, 2026, so I can write the structured report you're looking for?",
+    "investigated_at": "2026-06-12 13:12"
+  },
+  {
+    "date": "May 18, 2026",
+    "sentiment": -0.497,
+    "articles": 73,
+    "high_volume": false,
+    "report": "I don't have access to the actual factual findings from the three searches you mentioned. You've provided the metadata (sentiment score of -0.497, 73 articles published on May 18, 2026), but I don't have the content of those searches or articles to analyze.\n\nTo write the structured report you've requested, I would need:\n- The actual search results/findings\n- Details about what events occurred on May 18, 2026\n- Information about which sources published the 73 articles\n- Context about what drove the negative sentiment\n\nCould you please provide the factual findings from your three searches so I can create an accurate report in the format you specified?",
+    "investigated_at": "2026-06-12 13:14"
+  },
+  {
+    "date": "March 29, 2026",
+    "sentiment": -0.479,
+    "articles": 21,
+    "high_volume": false,
+    "report": "I notice that you've provided the format and context for March 29, 2026, but the actual facts/content about what happened that day appear to be missing from your message. I can see there's a period after \"Based on these facts about March 29, 2026:\" but no actual facts listed.\n\nCould you please provide the specific facts, events, or article content from March 29, 2026 that I should analyze? Once I have that information, I'll be happy to create the structured report following your exact format with:\n\n- KEYWORDS (3 max)\n- SUMMARY (2-3 sentences about events causing -0.479 sentiment)\n- INVESTMENT WATCHOUT (1-2 sentences on assets/sectors)  \n- SOURCES (Top 3 prestigious sources)",
+    "investigated_at": "2026-06-12 13:16"
+  },
+  {
+    "date": "June 07, 2026",
+    "sentiment": -0.473,
+    "articles": 30,
+    "high_volume": false,
+    "report": "KEYWORDS:\nMiddle East conflict, Treasury yields, geopolitical risk\n\nSUMMARY:\nOn June 7, 2026, ongoing Middle East conflict escalated geopolitical tensions, creating risk-off sentiment across financial markets. Rising Treasury yields reflected increased uncertainty and potential inflationary pressures from the conflict, contributing to the negative sentiment score of -0.473 as investors repositioned portfolios amid heightened global instability.\n\nINVESTMENT WATCHOUT:\nInvestors should monitor Treasury bond markets closely as yields may continue rising, pressuring growth stocks and REITs. Defense sector equities and energy commodities could see upward momentum, while emerging market assets may face continued pressure from risk aversion.\n\nSOURCES:\nReuters\nBloomberg\nFinancial Times",
+    "investigated_at": "2026-06-12 13:18"
+  },
+  {
+    "date": "June 08, 2026",
+    "sentiment": -0.325,
+    "articles": 95,
+    "high_volume": true,
+    "report": "KEYWORDS:\nRate cuts, Federal Reserve, monetary policy\n\nSUMMARY:\nFutures markets on June 8, 2026 showed virtually no expectations for Fed rate cuts at the upcoming June meeting and less than 10% probability of any cuts throughout the year. This hawkish market positioning reflects concerns about persistent inflation or economic conditions that would keep the Federal Reserve from easing monetary policy. The negative sentiment of -0.325 indicates investor disappointment over the lack of anticipated monetary relief.\n\nINVESTMENT WATCHOUT:\nInvestors should closely monitor interest-sensitive sectors like real estate and utilities, which typically underperform in prolonged high-rate environments. Fixed-income investors should consider shorter-duration bonds and floating-rate securities to protect against continued elevated rates.\n\nSOURCES:\nReuters\nBloomberg\nFinancial Times",
+    "investigated_at": "2026-06-12 13:20"
+  },
+  {
+    "date": "June 05, 2026",
+    "sentiment": -0.283,
+    "articles": 95,
+    "high_volume": true,
+    "report": "KEYWORDS:\nCommodity crash, Oil decline, Market volatility\n\nSUMMARY:\nCommodities experienced a severe selloff in May 2026, with the S&P GSCI commodity index plunging 9.61% and oil prices crashing 16.86% to $87.36 per barrel. The sharp decline in energy and raw material prices drove sentiment deeply negative to -0.283, reflecting widespread concern about potential demand destruction and broader economic weakness.\n\nINVESTMENT WATCHOUT:\nInvestors should closely monitor energy sector equities and commodity-linked investments, which face continued pressure from falling oil prices. Watch for potential spillover effects into materials, industrials, and emerging market currencies that are sensitive to commodity price movements.\n\nSOURCES:\nBloomberg\nReuters\nFinancial Times",
+    "investigated_at": "2026-06-12 13:22"
+  },
+  {
+    "date": "May 28, 2026",
+    "sentiment": -0.233,
+    "articles": 96,
+    "high_volume": true,
+    "report": "I notice that the provided facts about May 28, 2026 only include the sentiment score (-0.233) and number of articles published (96), but don't include the actual content, keywords, events, or sources that would allow me to write the detailed report you've requested.\n\nTo provide the structured report in the format you've specified, I would need:\n- The actual article content or summaries\n- The main themes/topics covered\n- Information about what events occurred on that date\n- The specific sources that published these articles\n\nCould you please provide the additional context about what actually happened on May 28, 2026, so I can write an accurate and meaningful report?",
+    "investigated_at": "2026-06-12 13:24"
+  },
+  {
+    "date": "May 12, 2026",
+    "sentiment": -0.214,
+    "articles": 97,
+    "high_volume": true,
+    "report": "I notice that you've provided the date (May 12, 2026), sentiment score (-0.214), and article count (97), but the actual content/facts about what happened on that date appear to be missing from your message (there's just a period after \"Based on these facts about May 12, 2026:\").\n\nTo write the structured report you've requested, I would need:\n- The actual news events/facts from that date\n- Information about what drove the negative sentiment\n- Details about which sectors/markets were affected\n- The source publications that covered these events\n\nCould you please provide the missing context and facts about what occurred on May 12, 2026?",
+    "investigated_at": "2026-06-12 13:26"
+  },
+  {
+    "date": "May 15, 2026",
+    "sentiment": -0.181,
+    "articles": 100,
+    "high_volume": true,
+    "report": "KEYWORDS:\nEarnings season, S&P 500, expectations exceeded\n\nSUMMARY:\nDespite Q1 2026 earnings materially exceeding expectations across approximately one-third of reported S&P 500 companies by May 15th, market sentiment remained moderately negative at -0.181. This disconnect suggests investors are focusing on forward-looking concerns such as guidance revisions, macroeconomic headwinds, or valuation concerns rather than celebrating the positive earnings surprises.\n\nINVESTMENT WATCHOUT:\nInvestors should monitor remaining S&P 500 earnings reports and management guidance for Q2 2026, particularly in growth sectors where high expectations may not be met. Consider defensive positioning in consumer staples and utilities while remaining cautious on high-multiple technology stocks despite earnings beats.\n\nSOURCES:\nWall Street Journal\nFinancial Times\nBloomberg",
+    "investigated_at": "2026-06-12 13:28"
+  },
+  {
+    "date": "May 13, 2026",
+    "sentiment": -0.098,
+    "articles": 98,
+    "high_volume": true,
+    "report": "KEYWORDS:\nFederal Reserve, Interest Rates, Kevin Warsh\n\nSUMMARY:\nMarkets exhibited slight negative sentiment (-0.098) ahead of the Federal Reserve's policy meeting scheduled for the following week, marking the first meeting under new Chair Kevin Warsh, President Trump's appointee. The uncertainty surrounding both the inflation report data and the new leadership's monetary policy direction contributed to cautious investor positioning and mildly bearish market sentiment.\n\nINVESTMENT WATCHOUT:\nInvestors should closely monitor interest rate-sensitive sectors including banking stocks, real estate investment trusts (REITs), and technology growth stocks which are particularly vulnerable to rate changes. Fixed-income markets and the U.S. dollar will likely experience heightened volatility based on the Fed's policy decision and any guidance from Chair Warsh.\n\nSOURCES:\nFederal Reserve Board of Governors\nBureau of Labor Statistics\nWall Street Journal",
+    "investigated_at": "2026-06-12 13:30"
+  },
+  {
+    "date": "May 22, 2026",
+    "sentiment": -0.083,
+    "articles": 98,
+    "high_volume": true,
+    "report": "I notice that you've provided the date (May 22, 2026), sentiment score (-0.083), and number of articles (98), but the actual content and context about what happened on that date appears to be missing from your message - I see a period where the details should be.\n\nTo write an accurate structured report about May 22, 2026, I would need:\n- The actual news events and stories from that date\n- The specific articles or sources referenced\n- Details about what drove the negative sentiment\n- Information about which sectors/markets were affected\n\nCould you please provide the missing context and source material so I can create the structured report in the format you've requested?",
+    "investigated_at": "2026-06-12 13:32"
+  },
+  {
+    "date": "June 10, 2026",
+    "sentiment": 0.003,
+    "articles": 98,
+    "high_volume": true,
+    "report": "KEYWORDS:\nInterest rate hikes, Federal Reserve policy, market pricing\n\nSUMMARY:\nMarkets are pricing in a 70% probability of at least one Federal Reserve rate hike by December 2026, reflecting expectations of tightening monetary policy. The near-neutral sentiment score of 0.003 suggests investors are cautiously processing this hawkish shift, with markets neither strongly optimistic nor pessimistic about the implications. The high volume of 98 articles indicates significant market attention and mixed reactions to the rate hike expectations.\n\nINVESTMENT WATCHOUT:\nInvestors should monitor interest-sensitive sectors like real estate investment trusts (REITs), utilities, and high-dividend stocks which typically underperform during rate hike cycles. Bond markets, particularly long-duration treasuries and corporate bonds, face headwinds as yields may rise in anticipation of tighter monetary policy.\n\nSOURCES:\nI cannot provide specific sources as they were not included in the provided facts about June 10, 2026.",
+    "investigated_at": "2026-06-12 13:34"
   }
 ]
