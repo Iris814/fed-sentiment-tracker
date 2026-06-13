@@ -1,8 +1,6 @@
 name: Daily Fed Sentiment Pipeline
 
 on:
-  schedule:
-    - cron: '0 12 * * 1-5'  # runs every weekday at 8am EST
   workflow_dispatch:          # allows manual trigger from GitHub
 
 jobs:
