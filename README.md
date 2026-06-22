@@ -28,7 +28,21 @@ Cross-outlet daily mean sentiment with anomaly band (Layer 2):
 
 ![Layer 2 — daily mean sentiment with anomaly threshold](fed_sentiment_layer2.png)
 
-Investigation reports for flagged anomaly days are written to `investigation_reports.json`.
+Investigation reports for flagged anomaly days are written to `investigation_reports.json` (days where the agent surfaces no usable findings are skipped, not written).
+
+## VADER vs. FinBERT — do they actually agree?
+
+Layer 1 (VADER, lexical) and Layer 2 (FinBERT, finance-tuned) score the **same 4,291 headlines**. They agree on only **52% of labels** (Pearson **r = 0.33**) — and the disagreements are the whole point: VADER reacts to tone words, FinBERT to financial framing.
+
+![VADER vs FinBERT — per-headline comparison](vader_vs_finbert.png)
+
+| Headline | VADER | FinBERT |
+|---|:--:|:--:|
+| "Gas prices set to rise amid U.S.–Israeli war with Iran" | −0.60 | **+0.87** |
+| "No Fury in Stock Market: U.S. Stocks Mixed as Energy Prices Climb" | +0.62 | **−0.91** |
+| "US Manufacturing Grew, Input Costs Soared Before Iran Attack" | −0.48 | **+0.91** |
+
+Reproduce with `python vader_vs_finbert.py`. This is why the pipeline keeps both scorings rather than picking one.
 
 ## How to run
 
@@ -48,7 +62,7 @@ Or step through the notebooks in order (`layer1` → `layer2` → `layer3`) to s
 
 ## Automation
 
-`.github/workflows/daily_pipeline.yml` runs the pipeline on a cron each weekday at 8am EST and auto-commits `daily_sentiment.csv` + `investigation_reports.json`. The committed dataset covers daily runs from early March 2026 through April 20, 2026; the cron is currently paused and can be restarted with `gh workflow run daily_pipeline.yml`.
+`.github/workflows/daily_pipeline.yml` runs the pipeline on a cron each weekday at 8am EST and auto-commits `daily_sentiment.csv`, `daily_aggregate.csv` + `investigation_reports.json`. The committed dataset covers daily runs from March 2 through June 11, 2026 (4,291 scored headlines); the cron is currently paused and can be restarted with `gh workflow run daily_pipeline.yml`.
 
 ## What this taught me
 
