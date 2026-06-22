@@ -1,13 +1,5 @@
 [
   {
-    "date": "March 22, 2026",
-    "sentiment": -0.723,
-    "articles": 11,
-    "high_volume": false,
-    "report": "<function_calls>\n<invoke name=\"web_search\">\n<parameter name=\"query\">March 22 2026 news Fed rate hike inflation concerns</parameter>\n</invoke>",
-    "investigated_at": "2026-03-31 12:28"
-  },
-  {
     "date": "March 19, 2026",
     "sentiment": -0.379,
     "articles": 95,
@@ -16,36 +8,12 @@
     "investigated_at": "2026-03-31 12:34"
   },
   {
-    "date": "March 18, 2026",
-    "sentiment": -0.216,
-    "articles": 96,
-    "high_volume": true,
-    "report": "Compared to December projections, the March 2026 Summary of Economic Projections showed a 30-basis-point increase in 2026 PCE inflation to 2.",
-    "investigated_at": "2026-03-31 12:44"
-  },
-  {
     "date": "March 13, 2026",
     "sentiment": -0.466,
     "articles": 88,
     "high_volume": true,
     "report": "KEYWORDS:\nFed hawkish pivot, energy inflation shock, leadership transition\n\nSUMMARY:\nMarkets turned sharply negative with sentiment hitting -0.466 as the Federal Reserve faces an unprecedented triple challenge: energy-driven inflation surging to 3.3% from Iran conflict and Strait of Hormuz closure, forcing a potential hawkish policy pivot despite growth concerns. This policy dilemma is amplified by Powell's impending departure and transition to Kevin Warsh in May, creating extraordinary uncertainty during a critical economic juncture.\n\nINVESTMENT WATCHOUT:\nInvestors should defensively position across equities facing valuation compression risk and prepare for elevated volatility in fixed income as longer rates face upward pressure from potential Fed hawkishness. Energy sectors may benefit from supply disruptions while growth-sensitive assets remain vulnerable to the Fed's impossible choice between fighting inflation and supporting economic growth.\n\nSOURCES:\nFederal Reserve economic models and policy statements\nDepartment of Justice court filings regarding Fed independence\nConsumer Price Index and inflation tracking data",
     "investigated_at": "2026-04-09 12:31"
-  },
-  {
-    "date": "March 06, 2026",
-    "sentiment": -0.416,
-    "articles": 85,
-    "high_volume": true,
-    "report": "I notice that while you've provided sentiment score (-0.416) and article count (85) for March 06, 2026, there are no actual facts, events, or source information included in your prompt. The context section appears to be incomplete.\n\nWithout the specific events, news content, or sources from that date, I cannot write an accurate report about what caused the negative sentiment or provide meaningful investment guidance.\n\nCould you please provide:\n- The actual events/news that occurred on March 06, 2026\n- The themes/topics covered in those 85 articles\n- The sources that published this information\n\nOnce I have this information, I'll be happy to create the structured report in the exact format you requested.",
-    "investigated_at": "2026-04-14 12:30"
-  },
-  {
-    "date": "May 23, 2026",
-    "sentiment": -0.502,
-    "articles": 37,
-    "high_volume": false,
-    "report": "I notice that while you've provided the date (May 23, 2026), sentiment score (-0.502), and article count (37), you haven't included the actual facts, content, or context about what happened on that date. Without the specific events, news, or research details from May 23, 2026, I cannot write an accurate structured report.\n\nTo provide you with a meaningful analysis that captures the main themes, explains the negative sentiment, and offers relevant investment guidance, I would need:\n\n- The actual news events or developments from that date\n- The content or topics of those 37 articles\n- The specific sources that published the articles\n- Details about what drove the negative sentiment\n\nCould you please provide the factual content and context about what occurred on May 23, 2026, so I can write the structured report you're looking for?",
-    "investigated_at": "2026-06-12 13:12"
   },
   {
     "date": "May 18, 2026",

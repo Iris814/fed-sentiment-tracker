@@ -7,6 +7,7 @@ import anthropic
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from transformers import pipeline as hf_pipeline
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 load_dotenv()
 
@@ -173,8 +174,10 @@ Return only the key facts you found — no analysis yet."""
             turns += 1
 
             for block in response.content:
-                if hasattr(block, "text") and block.text:
-                    search_results = block.text.strip()
+                if hasattr(block, "text") and block.text and block.text.strip():
+                    # accumulate every text block across all turns — don't overwrite
+                    # with the last fragment (that left the formatter with ~nothing)
+                    search_results += block.text.strip() + "\n\n"
 
             cleaned_content = []
             for block in response.content:
@@ -199,6 +202,12 @@ Return only the key facts you found — no analysis yet."""
             print("Rate limit hit — waiting 90 seconds...")
             time.sleep(90)
             continue
+
+    # guard: if the search turns produced no usable findings, skip this day
+    # instead of feeding the formatter an empty string (which yields a refusal)
+    search_results = search_results.strip()
+    if not search_results:
+        return None
 
     # step 2 — format report with no web search (cheap)
     report_response = client.messages.create(
@@ -262,17 +271,24 @@ if __name__ == "__main__":
     # 1. fetch
     df = fetch_incremental(TOPIC, API_KEY)
 
-    # 2. score
+    # 2. score — FinBERT (finance-tuned) plus a VADER (lexical) baseline to compare
     finbert = load_finbert()
     print("Scoring headlines...")
     df["sentiment"] = df["title"].apply(lambda t: score_finbert(t, finbert))
     df["label"] = df["sentiment"].apply(
         lambda s: "positive" if s > 0.05 else "negative" if s < -0.05 else "neutral"
     )
+    vader = SentimentIntensityAnalyzer()
+    df["vader"] = df["title"].apply(lambda t: vader.polarity_scores(str(t))["compound"])
+    df["vader_label"] = df["vader"].apply(
+        lambda s: "positive" if s >= 0.05 else "negative" if s <= -0.05 else "neutral"
+    )
+    df.to_csv(CSV_PATH, index=False)          # persist scores — don't leave the CSV unscored
     print(f"Scored {len(df)} articles")
 
     # 3. aggregate and detect
     daily, anomalies = aggregate(df)
+    daily.to_csv("daily_aggregate.csv", index=False)   # one row/day — what layer3 reads
 
     # 4. load already investigated dates
     if os.path.exists("investigation_reports.json"):
@@ -302,6 +318,10 @@ if __name__ == "__main__":
             print(f"Sentiment: {row['avg_sentiment']:.3f} | Articles: {row['article_count']}")
             print("-" * 40)
             report = investigate_with_search(row)
+            if not report:
+                print("No usable findings — skipping (not written to reports)")
+                print("=" * 60)
+                continue
             print(report)
             print("=" * 60)
 
